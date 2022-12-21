@@ -1,0 +1,19 @@
+Interface
+- 10 random dice with numbers between 1 and 6
+- Button for rolling dice which generates random dice
+
+Features (basic)
+- Random dice onload
+- Random dice on roll button click
+- Random dice when game is reset
+- Confetti drop when game is won
+- Hold same value dice in place and only roll dice that has not been held 
+- change color of held dice
+
+Features (added)
+- Modal screen that shows 
+  - "You won!"  
+  - time taken to complete
+  - number of rolls
+  - Best roll value
+  - Best time value

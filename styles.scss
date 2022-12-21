@@ -1,0 +1,119 @@
+// font 
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+
+// color variables 
+$body-dark-blue: #0B2434;
+$text-dark-blue: #2B283A;
+$light-dark-blue: #4A4E74;
+$light-grey: #F5F5F5;
+$light-green: #59E391;
+$light-blue: #5035FF;
+$white: #ffffff;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: $body-dark-blue;
+    margin: 2rem;
+}
+
+main {
+    background-color: $light-grey;
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    // height: 450px;
+    padding: 3rem 2rem;
+}
+
+.rules {
+    text-align: center;
+
+    h1 {
+        color: $text-dark-blue;
+    }
+
+    p {
+        color: $light-dark-blue;
+    }
+}
+
+.dice-container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(30px, 1fr));
+    gap: 1.7rem;  
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.die-face {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Karla', sans-serif;
+    width: 50px;
+    height: 50px;
+    padding: 1rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $white;
+    color: $text-dark-blue;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5rem;
+   
+}
+
+.roll-btn {
+    width: 150px;
+    height: 48px;
+    margin-top: 3rem;
+    border: none;
+    border-radius: 0.3rem;
+    color: $white;
+    background-color: $light-blue;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Karla', sans-serif;
+
+    &:active {
+        box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+    }
+}
+
+
+@media (max-width: 460px) {
+    body {
+        font-size: 1rem;
+    }
+
+    .dice-container {
+        grid-template-columns: repeat(3, minmax(30px, 1fr));
+
+        div {
+
+            &:last-child {
+                grid-column: 2;
+            }
+        }
+    }
+    
+}
