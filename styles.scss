@@ -6,9 +6,27 @@ $body-dark-blue: #0B2434;
 $text-dark-blue: #2B283A;
 $light-dark-blue: #4A4E74;
 $light-grey: #F5F5F5;
-$light-green: #59E391;
+$light-green: #12743a;
 $light-blue: #5035FF;
 $white: #ffffff;
+$red: #953131;
+
+// mixins
+@mixin button($color, $bg-color) {
+    width: 150px;
+    height: 48px;
+    border: none;
+    border-radius: 0.3rem;
+    color: $color;
+    background-color: $bg-color;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Karla', sans-serif;
+
+    &:active {
+        box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+    }
+}
 
 * {
     margin: 0;
@@ -24,7 +42,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     background-color: $body-dark-blue;
-    margin: 2rem;
+    margin: 0 2rem;
 }
 
 main {
@@ -82,23 +100,62 @@ main {
 }
 
 .roll-btn {
-    width: 150px;
-    height: 48px;
+    @include button($white, $light-blue);
     margin-top: 3rem;
-    border: none;
-    border-radius: 0.3rem;
-    color: $white;
-    background-color: $light-blue;
     font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: 'Karla', sans-serif;
+}
 
-    &:active {
-        box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000000e8;
+    color: white;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-details {
+    margin-top: 3rem;
+}
+
+.overlay-btns {
+    display: flex;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        font-size: 1.2rem;
+        margin: 0.5rem 1rem;
+    }
+
+    .new-game {
+        @include button($white, $light-green); 
+    }
+
+    .reset-scores {
+        @include button($white, $red)
     }
 }
 
+table {
+    width: 100%;
+
+    td {
+        padding: 0.5rem;
+    }
+
+    tr {
+        vertical-align: baseline;
+    }
+}
 
 @media (max-width: 460px) {
     body {
