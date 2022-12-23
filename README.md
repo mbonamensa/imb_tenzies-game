@@ -35,7 +35,7 @@ Players should be able to:
 ![](./src/assets/screenshot.png)
 
 ### Links
-- [Solution URL]https://github.com/mbonamensa/imb_tenzies-game)
+- [Solution URL](https://github.com/mbonamensa/imb_tenzies-game)
 - [Live Site URL](https://imb-tenzies-game.netlify.app/)
 
 
