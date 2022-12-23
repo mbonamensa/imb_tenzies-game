@@ -11,10 +11,6 @@ function App() {
   const {
     seconds,
     minutes,
-    hours,
-    days,
-    isRunning,
-    start,
     pause,
     reset,
   } = useStopwatch({ autoStart: false })
@@ -27,10 +23,10 @@ function App() {
   const [width, height] = useWindowSize()
   const timeScore = (minutes * 60) + seconds 
   const [bestTime, sestBestTime] = useState(() => JSON.parse(localStorage.getItem("bestTime")) || timeScore)
-  const [resetGameScores, setResetGameScores] = useState(false)
 
   useEffect(() => {
 
+    // check if all dice are held and have the same value
     const allHeldDice = dice.every(die => die.isHeld)
     const firstValue = dice[0].value
     const allSameValue = dice.every(die => die.value === firstValue)
@@ -65,22 +61,22 @@ function App() {
         }
       })
       pause()
-      console.log("You won!")
     }
-
-
   }, [dice])
 
+  // save number of rolls and best number of rolls
   useEffect(() => {
     localStorage.setItem("rolls", JSON.stringify(rolls))
     localStorage.setItem("bestRoll", JSON.stringify(bestRoll))
   }, [rolls, bestRoll])
 
+  // save time taken to complete game and best time taken to complete game
   useEffect(() => {
     localStorage.setItem("timeScore", JSON.stringify(timeScore))
     localStorage.setItem("bestTime", JSON.stringify(bestTime))
   }, [tenzies, timeScore, bestTime])
 
+  // generate the die object
   function generateDie() {
     const randomDie = Math.ceil(Math.random() * 6);
     return {
@@ -90,6 +86,7 @@ function App() {
     }
   }
 
+  // generate 10 new dice and put in an array
   function allNewDice() {
     const newDice = [];
 
@@ -100,6 +97,7 @@ function App() {
     return newDice;
   }
 
+  // roll dice, i.e generate new die if die is not held and update number of rolls
   function rollDice() {
     setDice(prevDice => prevDice.map(die => {
       return die.isHeld ? die : generateDie()
@@ -107,6 +105,7 @@ function App() {
     setRolls(prevRolls => prevRolls + 1)
   }
 
+  // hold die if it is clicked
   function holdDice(id) {
     setDice(prevDice => prevDice.map(die => {
       return die.id === id ?
@@ -115,6 +114,7 @@ function App() {
     }))
   }
 
+  // reset game when new game is clicked
   function newGame() {
     setTenzies(false)
     setOverlay(false)
@@ -123,18 +123,21 @@ function App() {
     setDice(allNewDice())
   }
 
+  // staet game again after game is reset
   function startTenzies() {
     setStartGame(true)
     setDice(allNewDice())
     reset()
   }
 
+  // reset scores stored in local storage
   function resetScores() {
     localStorage.clear()
     setBestRoll(0)
     sestBestTime(0)
   }
 
+  // map over dice array and display dice
   const diceElements = dice.map((die) => {
     return <Die 
         key={die.id} 
